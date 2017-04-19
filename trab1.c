@@ -7,11 +7,11 @@
 
 GLfloat  grauRotacao = 0;
  
-void desenhaCirculo(GLint verticex, GLint verticey, GLint raio){
+void desenhaCirculo(GLint verticex, GLint verticey, GLint raio, GLfloat R,GLfloat G,GLfloat B){
 
 int i;
 
-glColor3f(1.0f, 1.0f, 0.2f); // cor do sol
+glColor3f(R, G, B); // cor do sol
 glBegin(GL_POLYGON);
      for (i = 0; i < Frac_Circ + 1; i++) {  // +1 para cerrar
          glVertex2f(verticex + raio * cos(i),verticey + raio * sin(i));
@@ -36,7 +36,7 @@ void rothelice(GLfloat angulo_inicial, GLfloat grauRotacao)
 {
 
  glTranslatef(350,400.0f,0.0f);
- glRotatef(angulo_inicial + grauRotacao ,0.0f,0.0f,1.0f);
+ glRotatef(angulo_inicial + grauRotacao,0.0f,0.0f,1.0f);
  glTranslatef(-350.0f,-400.0f,0.0f); 
 
 }
@@ -50,7 +50,8 @@ void Draw(void){
   glMatrixMode(GL_MODELVIEW); // Inicia-se a matriz de transformações da openGL
   glLoadIdentity();
 
-  desenhaCirculo(1100.f, 700.f, 68.0f); // para desenhar o sol na tela
+  desenhaCirculo(1100.f, 700.f, 68.0f, 1.0f, 1.0f, 0.2f); // para desenhar o sol na tela
+
   // Define vermelho como cor inicial de desenho
   glColor3f(0.0f, 1.0f, 0.0f);
   // Define os vértices de um quadrado
@@ -183,6 +184,10 @@ glLoadIdentity();
   glVertex2f(350.0f, 400.0f); // em comum
   glEnd();
   glLoadIdentity();
+
+  glColor3f(0.0f, 0.0f, 0.0f); // preto
+  desenhaCirculo(350.0f, 400.f, 10.0f,0.0f,0.0f,0.0f); // para desenhar o sol na tela
+
 
   glFlush();     
 }
