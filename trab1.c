@@ -1,25 +1,33 @@
 #include <GL/glut.h> // diretorio aonde esta a biblioteca
+#include <math.h>
+#include <stdio.h>
 
-GLfloat R=0.0f, G=0.0f, B=0.0f;
+#define Frac_Circ 500  // Cien fracciones de circulo
+#define PI 3.1415926535897932
+
 GLfloat  grauRotacao = 0;
+ 
+void desenhaCirculo(GLint verticex, GLint verticey, GLint raio){
+
+int i;
+
+glColor3f(1.0f, 1.0f, 0.2f); // cor do sol
+glBegin(GL_POLYGON);
+     for (i = 0; i < Frac_Circ + 1; i++) {  // +1 para cerrar
+         glVertex2f(verticex + raio * cos(i),verticey + raio * sin(i));
+}
+glEnd();  
+ glFlush();    
+
+
+}
+
 void on_mouseClick(int botao_clicado, int estado_do_click, int x_mouse_position, int y_mouse_position) {
 
-  if(estado_do_click == GLUT_DOWN)
-  {
-    /*      if(botao_clicado == GLUT_RIGTH_BUTTON)
-    {
-      // SORTEI CORES
-      R = 0.0f;
-      G = 0.0f;
-      B = 0.0f;
-
-    }*/
-    if (botao_clicado == GLUT_LEFT_BUTTON)
-    {
-      
-       grauRotacao +=10 ;
-    }
-  }
+  if(botao_clicado  == GLUT_RIGHT_BUTTON)
+      grauRotacao -=10;    
+  else if (botao_clicado == GLUT_LEFT_BUTTON)
+    grauRotacao +=10 ;
 
   glutPostRedisplay(); // Força a glut redesenhar a cena após a atualização.
 }
@@ -41,8 +49,10 @@ void Draw(void){
   // Pinta a tela com a cor definida acima
   glMatrixMode(GL_MODELVIEW); // Inicia-se a matriz de transformações da openGL
   glLoadIdentity();
+
+  desenhaCirculo(1100.f, 700.f, 68.0f); // para desenhar o sol na tela
   // Define vermelho como cor inicial de desenho
-glColor3f(0.0f, 1.0f, 0.0f);
+  glColor3f(0.0f, 1.0f, 0.0f);
   // Define os vértices de um quadrado
  glBegin(GL_QUADS);
     glVertex2f(0.0f, 0.0f);
@@ -66,7 +76,7 @@ glColor3f(0.59f, 0.29f, 0.0f);
 
 glLoadIdentity();
 
-//Primeiro Triangulo
+/***Primeiro Triangulo ***/
   
   rothelice(0.0,grauRotacao); 
   
@@ -94,10 +104,8 @@ glLoadIdentity();
   glEnd();
   glLoadIdentity();
 
+/***Segundo Triangulo**/
 
-
-
-//Segundo Triangulo  
   rothelice(180.0, grauRotacao);
   // Especifica a cor vermelho
   glColor3f(1.0f, 0.0f, 0.0f);
@@ -121,12 +129,12 @@ glLoadIdentity();
   glLoadIdentity();
 
 
-//Terceiro Triangulo
-   rothelice(270.0, grauRotacao);
+/**Terceiro Triangulo **/
+  rothelice(270.0, grauRotacao);
  
 
   // Especifica a cor amarelo
-  glColor3f(1.0f, 1.0f, 0.5f);
+  glColor3f(1.0f, 1.0f, 0.8f);
 
   // Desenha o triangulo
   glBegin(GL_TRIANGLES);
