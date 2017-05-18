@@ -1,4 +1,17 @@
-#include <GL/glut.h> // diretorio aonde esta a biblioteca
+// diretorios onde estao as bibliotecas (inclusive mac)
+
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#else
+#include <GL/gl.h>
+#endif
+
+#ifdef __APPLE__
+#include <GLUT/glut.h>
+#else
+#include <GL/glut.h>
+#endif
+
 #include <math.h>
 #include <stdio.h>
 
@@ -9,17 +22,15 @@ GLfloat  grauRotacao = 0;
  
 void desenhaCirculo(GLint verticex, GLint verticey, GLint raio, GLfloat R,GLfloat G,GLfloat B){
 
-int i;
+  int i;
 
-glColor3f(R, G, B); // cor do sol
-glBegin(GL_POLYGON);
-     for (i = 0; i < Frac_Circ + 1; i++) {  // +1 para cerrar
-         glVertex2f(verticex + raio * cos(i),verticey + raio * sin(i));
-}
-glEnd();  
- glFlush();    
-
-
+  glColor3f(R, G, B); // cor do sol
+  glBegin(GL_POLYGON);
+    for (i = 0; i < Frac_Circ + 1; i++) {  // +1 para cerrar
+      glVertex2f(verticex + raio * cos(i),verticey + raio * sin(i));
+    }
+  glEnd();
+  glFlush();
 }
 
 void on_mouseClick(int botao_clicado, int estado_do_click, int x_mouse_position, int y_mouse_position) {
@@ -32,14 +43,14 @@ void on_mouseClick(int botao_clicado, int estado_do_click, int x_mouse_position,
   glutPostRedisplay(); // Força a glut redesenhar a cena após a atualização.
 }
 
-void rothelice(GLfloat angulo_inicial, GLfloat grauRotacao)
-{
+void rothelice(GLfloat angulo_inicial, GLfloat grauRotacao) {
 
- glTranslatef(350,400.0f,0.0f);
- glRotatef(angulo_inicial + grauRotacao,0.0f,0.0f,1.0f);
- glTranslatef(-350.0f,-400.0f,0.0f); 
+  glTranslatef(350,400.0f,0.0f);
+  glRotatef(angulo_inicial + grauRotacao,0.0f,0.0f,1.0f);
+  glTranslatef(-350.0f,-400.0f,0.0f); 
 
 }
+
 void Draw(void){ 
   
   // Define cor de fundo da cena
@@ -55,27 +66,25 @@ void Draw(void){
   // Define vermelho como cor inicial de desenho
   glColor3f(0.0f, 1.0f, 0.0f);
   // Define os vértices de um quadrado
- glBegin(GL_QUADS);
+  glBegin(GL_QUADS);
     glVertex2f(0.0f, 0.0f);
     glVertex2f(0.0f, 300.0f);
     glVertex2f(1300.0f, 300.0f); 
     glVertex2f(1300.0f, 0.0f);                    
   glEnd();
 
-glLoadIdentity();
+  glLoadIdentity();
 
-glColor3f(0.59f, 0.29f, 0.0f);
+  glColor3f(0.59f, 0.29f, 0.0f);
   // Define os vértices de um quadrado
- glBegin(GL_QUADS); // apoio da helice
+  glBegin(GL_QUADS); // apoio da helice
     glVertex2f(345.0f, 50.0f);
     glVertex2f(345.0f, 400.0f); 
     glVertex2f(360.0f, 400.0f);
-    glVertex2f(360.0f, 50.0f); 
-
-                       
+    glVertex2f(360.0f, 50.0f);                   
   glEnd();
 
-glLoadIdentity();
+  glLoadIdentity();
 
 /***Primeiro Triangulo ***/
   
@@ -86,9 +95,9 @@ glLoadIdentity();
 
   // Desenha o triangulo
   glBegin(GL_TRIANGLES);
-  glVertex2f(300.0f , 300.0f); 
-  glVertex2f(350.0f, 300.0f); 
-  glVertex2f(350.0f, 400.0f); //c
+    glVertex2f(300.0f , 300.0f); 
+    glVertex2f(350.0f, 300.0f); 
+    glVertex2f(350.0f, 400.0f); //c
   glEnd();
   glLoadIdentity();
 
@@ -99,9 +108,9 @@ glLoadIdentity();
 
   // Desenha o triangulo
   glBegin(GL_TRIANGLES);
-  glVertex2f(400.0f, 382.0f); 
-  glVertex2f(350.0f, 300.0f); // em comum
-  glVertex2f(350.0f, 400.0f); // em comum
+    glVertex2f(400.0f, 382.0f); 
+    glVertex2f(350.0f, 300.0f); // em comum
+    glVertex2f(350.0f, 400.0f); // em comum
   glEnd();
   glLoadIdentity();
 
@@ -112,9 +121,9 @@ glLoadIdentity();
   glColor3f(1.0f, 0.0f, 0.0f);
   // Desenha o triangulo
   glBegin(GL_TRIANGLES);
-  glVertex2f(300.0f, 300.0f); 
-  glVertex2f(350.0f, 300.0f); 
-  glVertex2f(350.0f, 400.0f); //c
+    glVertex2f(300.0f, 300.0f); 
+    glVertex2f(350.0f, 300.0f); 
+    glVertex2f(350.0f, 400.0f); //c
   glEnd();
   glLoadIdentity();  
 
@@ -123,9 +132,9 @@ glLoadIdentity();
 
   // Desenha o triangulo
   glBegin(GL_TRIANGLES);
-  glVertex2f(400.0f, 382.0f); 
-  glVertex2f(350.0f, 300.0f); // em comum
-  glVertex2f(350.0f, 400.0f); // em comum
+    glVertex2f(400.0f, 382.0f); 
+    glVertex2f(350.0f, 300.0f); // em comum
+    glVertex2f(350.0f, 400.0f); // em comum
   glEnd();
   glLoadIdentity();
 
@@ -139,9 +148,9 @@ glLoadIdentity();
 
   // Desenha o triangulo
   glBegin(GL_TRIANGLES);
-  glVertex2f(300.0f, 300.0f); 
-  glVertex2f(350.0f, 300.0f); 
-  glVertex2f(350.0f, 400.0f); //c
+    glVertex2f(300.0f, 300.0f); 
+    glVertex2f(350.0f, 300.0f); 
+    glVertex2f(350.0f, 400.0f); //c
   glEnd();
   glLoadIdentity();
 
@@ -152,23 +161,23 @@ glLoadIdentity();
 
   // Desenha o triangulo
   glBegin(GL_TRIANGLES);
-  glVertex2f(390.0f, 382.0f); 
-  glVertex2f(350.0f, 300.0f); // em comum
-  glVertex2f(350.0f, 400.0f); // em comum
+    glVertex2f(390.0f, 382.0f); 
+    glVertex2f(350.0f, 300.0f); // em comum
+    glVertex2f(350.0f, 400.0f); // em comum
   glEnd();
   glLoadIdentity();
 
 
   //Quarto triangulo
-   rothelice(90.0, grauRotacao);
+  rothelice(90.0, grauRotacao);
   // Especifica a cor preto
   glColor3f(1.0f, 0.65f, 0.0f); // laranja
 
   // Desenha o triangulo
   glBegin(GL_TRIANGLES);
-  glVertex2f(300.0f, 300.0f); 
-  glVertex2f(350.0f, 300.0f); 
-  glVertex2f(350.0f, 400.0f); //c
+    glVertex2f(300.0f, 300.0f); 
+    glVertex2f(350.0f, 300.0f); 
+    glVertex2f(350.0f, 400.0f); //c
   glEnd();
   glLoadIdentity();
 
@@ -179,9 +188,9 @@ glLoadIdentity();
 
   // Desenha o triangulo
   glBegin(GL_TRIANGLES);
-  glVertex2f(390.0f, 382.0f); 
-  glVertex2f(350.0f, 300.0f); // em comum
-  glVertex2f(350.0f, 400.0f); // em comum
+    glVertex2f(390.0f, 382.0f); 
+    glVertex2f(350.0f, 300.0f); // em comum
+    glVertex2f(350.0f, 400.0f); // em comum
   glEnd();
   glLoadIdentity();
 
@@ -192,18 +201,18 @@ glLoadIdentity();
   glFlush();     
 }
 
-int main(int argc, char* argv[])
-{
-    glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
-    glutInitWindowSize(1300, 800);
-    glutCreateWindow("Exemplo OpenGL");
-    glutMouseFunc(on_mouseClick); // Evento de click do mouse
-    glutDisplayFunc(Draw);
-    glMatrixMode(GL_PROJECTION); // Especificações de observação de cena
-    gluOrtho2D(0, 1300, 0, 800);
-       
-    glutMainLoop();
+int main(int argc, char* argv[]) {
 
-    return 0;
+  glutInit(&argc, argv);
+  glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+  glutInitWindowSize(1300, 800);
+  glutCreateWindow("Exemplo OpenGL");
+  glutMouseFunc(on_mouseClick); // Evento de click do mouse
+  glutDisplayFunc(Draw);
+  glMatrixMode(GL_PROJECTION); // Especificações de observação de cena
+  gluOrtho2D(0, 1300, 0, 800);
+     
+  glutMainLoop();
+
+  return 0;
 }
