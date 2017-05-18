@@ -1,0 +1,3 @@
+Para compilar no linux digite o seguintes comandos
+gcc -Wall -W trab1.c -lglut -lGL -lGLU -lm -o trab1
+./trab1
