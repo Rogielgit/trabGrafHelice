@@ -1,1 +1,8 @@
-Para compilar no macOS: gcc -framework OpenGL -framework GLUT -o trab1 trab1.c
+
+Para compilar no linux:
+gcc -Wall -W trab1.c -lglut -lGL -lGLU -lm -o trab1
+./trab1
+
+Para compilar no macOS: 
+gcc -framework OpenGL -framework GLUT -o trab1 trab1.c
+./trab1
