@@ -1,0 +1,1 @@
+Para compilar no macOS: gcc -framework OpenGL -framework GLUT -o trab1 trab1.c
